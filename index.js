@@ -67,13 +67,15 @@
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number 
 between 0 and 2. */
 
-function inning(){
-  return Math.floor(Math.random() * 3);
- }
- console.log(inning());
- console.log(inning());
- console.log(inning());
- console.log(inning());
+
+
+// function inning(){
+//   return Math.floor(Math.random() * 3);
+//  }
+//  console.log(inning());
+//  console.log(inning());
+//  console.log(inning());
+//  console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -103,6 +105,86 @@ Write a higher order function called `finalScore` that accepts the callback func
 //  }
 //  console.log(finalScore(inning(),1));
 
+// const finalScore = function(func,num){
+//   let score = {
+//     "Home": 0,
+//     "Away": 0
+//   }
+//   for (let i = 0; i < num; i++){
+//     score.Home += func()
+//     score.Away += func()
+//   }
+//   return score
+// }
+// console.log(finalScore(inning,9))
+
+
+// function scoreboard(funcInning,funcScore,num) {
+//   let total = {
+//     'Home"'
+//   }
+//   for(let i = 1; i <= num;i++){
+//     let score = funcScore(funcInning,1)
+//     total.Home += score.Home;
+//     total.Away += score.Away;
+//     console.log(`Inning ${i}: Home Score = ${score.Home} Away Score is ${score.Away}`)
+//   }
+//   return `Final Score: Home = ${total.Home} Away = ${total.Away}`
+// }
+// console.log(scoreboard(inning,finalScore,9))
+
+// /* Task 4: 
+
+// Create a function called `scoreboard` that accepts the following parameters: 
+
+// (1) Callback function `getInningScore`
+// (2) Callback function `inning`
+// (3) A number of innings
+
+// and returns the score at each pont in the game, like so:
+// 1st inning: awayTeam - homeTeam
+// 2nd inning: awayTeam - homeTeam
+// 3rd inning: awayTeam - homeTeam
+// 4th inning: awayTeam - homeTeam
+// 5th inning: awayTeam - homeTeam
+// 6th inning: awayTeam - homeTeam
+// 7th inning: awayTeam - homeTeam
+// 8th inning: awayTeam - homeTeam
+// 9th inning: awayTeam - homeTeam
+// Final Score: awayTeam - homeTeam */
+
+
+
+// function scoreboard(funcInning,funcScore,num) {
+//   let total = {
+//     'Home"'
+//   }
+//   for(let i = 1; i <= num;i++){
+//     let score = funcScore(funcInning,1)
+//     total.Home += score.Home;
+//     total.Away += score.Away;
+//     console.log(`Inning ${i}: Home Score = ${score.Home} Away Score is ${score.Away}`)
+//   }
+//   return `Final Score: Home = ${total.Home} Away = ${total.Away}`
+// }
+// console.log(scoreboard(inning,finalScore,9))
+
+
+
+
+
+const inning = function(){
+    return Math.floor(Math.random() * 3)
+}
+/* Task 3: finalScore()
+Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
+For example, 
+finalScore(inning, 9) might return: 
+{
+  "Home": 11,
+  "Away": 5,
+}
+*/ 
 const finalScore = function(func,num){
   let score = {
     "Home": 0,
@@ -115,17 +197,11 @@ const finalScore = function(func,num){
   return score
 }
 console.log(finalScore(inning,9))
-
-
-
 /* Task 4: 
-
 Create a function called `scoreboard` that accepts the following parameters: 
-
 (1) Callback function `getInningScore`
 (2) Callback function `inning`
 (3) A number of innings
-
 and returns the score at each pont in the game, like so:
 1st inning: awayTeam - homeTeam
 2nd inning: awayTeam - homeTeam
@@ -138,5 +214,17 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
-
-
+function scoreboard(funcInning,funcScore,num) {
+  let total = {
+    "Home":0,
+    "Away":0
+  }
+  for(let i = 1; i <= num;i++){
+    let score = funcScore(funcInning,1)
+    total.Home += score.Home;
+    total.Away += score.Away;
+    console.log(`Inning ${i}: Home Score = ${score.Home} Away Score is ${score.Away}`)
+  }
+  return `Final Score: Home = ${total.Home} Away = ${total.Away}`
+}
+console.log(scoreboard(inning,finalScore,9))
